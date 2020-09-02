@@ -8,9 +8,10 @@ RUN dotnet restore
 # Copy everything else and build
 COPY . ./
 RUN dotnet publish -c Release -o out
-
+#RUN ls
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "myWebApp.dll"]
+#COPY /app/out .
+ENTRYPOINT ["dotnet", "SignalRCoreWebRTC.dll"]
