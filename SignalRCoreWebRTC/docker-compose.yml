@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+
+    webrtc:
+        image: webrtc:${TAG:-1.0.0-release}
+        container_name: webrtc
+        environment:
+            - ASPNETCORE_URLS=http://*:80
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        networks:
+            - himart
+        restart: always
+       
+networks:
+  himart:
+    external: true  
+         
